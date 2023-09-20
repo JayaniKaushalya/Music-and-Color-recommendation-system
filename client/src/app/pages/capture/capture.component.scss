@@ -1,0 +1,128 @@
+.bg-color{
+    background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+    background: -webkit-linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+}
+h3 {
+    color: white;
+}
+
+.page-wrapper {
+    background: #eee;
+    min-height: 100vh;
+}
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+::ng-deep .webcam-wrapper {
+    border: #be2121 3px solid; 
+}
+
+.gradient-custom-2 {
+    /* fallback for old browsers */
+    background: #fccb90;
+    
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+    
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+}
+
+.btn-img {
+    width: 220px;
+    text-align: center;
+    justify-content: center;
+    margin: 5px;
+}
+
+.loading-text {
+    color: gray;
+    font-size: medium;
+    font-weight: 800;
+    margin-left: 10px;
+    margin-top: 15px;
+}
+
+.chat-btn {
+    position: fixed;
+    width: 70px;
+    bottom: 50px;
+    float: right;
+    right: 28px;
+    margin-right: 0px;
+    cursor: pointer;
+    opacity: 0.8;
+    filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
+}
+    .divider:after,
+    .divider:before {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #eee;
+    }
+
+    .message-text {
+        word-wrap: break-word;
+        max-width: 230px;
+ }
+
+ .abled-fa {
+    color: #ffc107; /* Replace with your desired warning color */
+    size: 30px;
+    cursor: pointer;
+  }
+
+  .disabled-fa {
+    color: #686868; /* Replace with your desired warning color */
+    size: 30px;
+  }
+
+  .right-section {
+    /* Add your styles for the right section */
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+    color: white;
+  }
+
+  .container-fluid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .dropdown-menu-end {
+    right: 10px;
+    left: auto;
+    width: 100px;
+    text-align: center;
+  }
+
+
+  .bot-typing {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding-top: 10px;
+    padding-left: 10px;
+    text-align: left;
+}
+
+.bot-typing-message {
+    font-size: 12px;
+    font-style: italic;
+    color: gray;
+    text-align: center;
+    padding: 0px;
+}
+
+.card-header {
+    position: relative;
+}

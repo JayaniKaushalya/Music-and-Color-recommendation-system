@@ -1,0 +1,515 @@
+<div class="page-wrapper d-flex flex-column justify-content-center align-items-center">
+  <nav class="navbar navbar-light bg-color fixed-top">
+    <div class="container-fluid">
+      <a href="http://localhost:4200/pages/capture">
+        <h3>FaceTunes</h3>
+      </a>
+      <div class="right-section d-flex align-items-center">
+        <a href="http://localhost:4200/pages/feedbacks" role="button" style="color: #ffff; margin-right: 10px;" *ngIf="viewAdmin">Feedbacks</a>
+        <a href="http://localhost:4200/pages/contact-us" role="button" style="color: #ffff; margin-right: 10px;" *ngIf="!viewAdmin">Contact Us</a>
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">{{firstName}}</a>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li><a class="dropdown-item" href="http://localhost:4200/pages/profile"><i class="fa fa-user"
+                aria-hidden="true"> </i>&nbsp;Profile</a></li>
+          <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal"><i
+                class="fa-solid fa-arrow-right-from-bracket"></i> Log out</a></li>
+          <li><a class="dropdown-item"></a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
+
+<div class="row mid-container">
+  <!-- <div class="col-sm-1"></div> -->
+  <div class="col-sm-8">
+    <div class="card card-player">
+      <div class="card-body">
+        <!-- <div class="card-body" [ngStyle]="{'background-color': musicPlayerBackgroundColor}"> -->
+        <h5 class="card-title">{{currentSongTitle}}</h5>
+        <hr />
+        <!-- <video autoplay muted oncanplay="this.muted=true" class="video">
+                    <source src={{this.moodTypeURL}} type="video/mp4">
+                </video> -->
+        <div [ngClass]="selectedColor"></div>
+        <hr />
+      </div>
+    </div>
+    <br />
+    <div class="card card-player">
+      <div class="card-body">
+        <div class="row">
+          <!-- <button type="button" class="btn btn-outline-primary btn-play"
+                            [disabled]="this.disablePreviousBtn" (click)="clickPrevious()"><i class="bi bi-chevron-left"></i>
+                            Previous</button> -->
+          <a class="previous round disabled"
+            style="width: 38px; margin-top: auto; margin-bottom: auto; height: auto;" *ngIf="this.disablePreviousBtn"
+            (click)="clickPrevious()">&#8249;</a>
+          <a class="previous round" style="width: 38px; margin-top: auto; margin-bottom: auto; height: auto;"
+            *ngIf="!this.disablePreviousBtn" (click)="clickPrevious()">&#8249;</a>
+          <audio autoplay #audioPlayer1 controls class="player" [src]="this.currentSong" autoplay style="width: 87%">
+            <source type="audio/mpeg">
+          </audio>
+          <!-- <button type="button" class="btn btn-outline-primary btn-play" [disabled]="this.disableNextBtn"
+            (click)="clickNext()"><i class="bi bi-chevron-right"></i>
+            Next</button> -->
+          <a class="previous round disabled"
+            style="width: 38px; margin-top: auto; margin-bottom: auto; height: auto;" *ngIf="this.disableNextBtn"
+            (click)="clickPrevious()">&#8250;</a>
+          <a class="previous round" style="width: 38px; margin-top: auto; margin-bottom: auto; height: auto;"
+            *ngIf="!this.disableNextBtn" (click)="clickPrevious()">&#8250;</a>
+
+          &nbsp;&nbsp;
+          <button type="button" class="btn btn-secondary btn-full-screen" style="width: 33px" data-bs-toggle="modal"
+            data-bs-target="#exampleModal1" (click)="clickFullScreenModel()">
+            <i class="bi bi-arrows-fullscreen" style="color: black;
+                              font-weight: bolder;"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div>
+      <div class="card card-main-playlist">
+        <p class="playlist-title">{{this.moodType}} Playlist</p>
+        <div class="card-body scroll-playlist">
+          <!-- accordian for playlist -->
+          <div class="accordion" id="accordionPanelsStayOpenExample">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
+                  aria-controls="panelsStayOpen-collapseOne">
+                  Country Music
+                </button>
+              </h2>
+              <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
+                aria-labelledby="panelsStayOpen-headingOne">
+                <div class="accordion-body">
+                  <span *ngFor="let music of finalMusic; let y = index; ;">
+                    <div class="card crad-playlist" *ngIf="music.category === 'Country Music'">
+                      <div class="card-body card-playlist-card-body">
+                        <div class="row card-play-item">
+                          <div class="col-sm-10 music-title-column" (click)="clickMusic(y, 'playlist')">
+                            <p class="music-title-2">{{music.title}}</p>
+                          </div>
+                          <div class="col-sm-2">
+                            <span><i class="bi bi-suit-heart icon-heart" *ngIf="music.is_favourite === 'false'"
+                                (click)="clickFavourite(y, music, 'playlist')"></i></span>
+                            <span><i class="bi bi-suit-heart-fill icon-heart" style="color: red;"
+                                *ngIf="music.is_favourite === 'true'" (click)="clickFavourite(y, music, 'playlist')"></i></span>
+                            <!--  -->
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false"
+                  aria-controls="panelsStayOpen-collapseTwo">
+                  English Songs
+                </button>
+              </h2>
+              <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse"
+                aria-labelledby="panelsStayOpen-headingTwo">
+                <div class="accordion-body">
+                  <span *ngFor="let music of finalMusic; let y = index; ;">
+                    <div class="card crad-playlist" *ngIf="music.category === 'English Songs'">
+                      <div class="card-body card-playlist-card-body">
+                        <div class="row card-play-item">
+                          <div class="col-sm-10 music-title-column" (click)="clickMusic(y, 'playlist')">
+                            <p class="music-title-2">{{y+1}}. {{music.title}}</p>
+                          </div>
+                          <div class="col-sm-2">
+                            <span><i class="bi bi-suit-heart icon-heart" *ngIf="music.is_favourite === 'false'"
+                                (click)="clickFavourite(y, music, 'playlist')"></i></span>
+                            <span><i class="bi bi-suit-heart-fill icon-heart" style="color: red;"
+                                *ngIf="music.is_favourite === 'true'" (click)="clickFavourite(y, music, 'playlist')"></i></span>
+                            <!--  -->
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false"
+                  aria-controls="panelsStayOpen-collapseThree">
+                  Ghibli Songs
+                </button>
+              </h2>
+              <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse"
+                aria-labelledby="panelsStayOpen-headingThree">
+                <div class="accordion-body">
+                  <span *ngFor="let music of finalMusic; let y = index; ;">
+                    <div class="card crad-playlist" *ngIf="music.category === 'Ghibli Songs'">
+                      <div class="card-body card-playlist-card-body">
+                        <div class="row card-play-item">
+                          <div class="col-sm-10 music-title-column" (click)="clickMusic(y, 'playlist')">
+                            <p class="music-title-2">{{y+1}}. {{music.title}}</p>
+                          </div>
+                          <div class="col-sm-2">
+                            <span><i class="bi bi-suit-heart icon-heart" *ngIf="music.is_favourite === 'false'"
+                                (click)="clickFavourite(y, music, 'playlist')"></i></span>
+                            <span><i class="bi bi-suit-heart-fill icon-heart" style="color: red;"
+                                *ngIf="music.is_favourite === 'true'" (click)="clickFavourite(y, music, 'playlist')"></i></span>
+                            <!--  -->
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="panelsStayOpen-headingFour">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="false"
+                  aria-controls="panelsStayOpen-collapseFour">
+                  Hindi Songs
+                </button>
+              </h2>
+              <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse"
+                aria-labelledby="panelsStayOpen-headingFour">
+                <div class="accordion-body">
+                  <span *ngFor="let music of finalMusic; let y = index; ;">
+                    <div class="card crad-playlist" *ngIf="music.category === 'Hindi Songs'">
+                      <div class="card-body card-playlist-card-body">
+                        <div class="row card-play-item">
+                          <div class="col-sm-10 music-title-column" (click)="clickMusic(y, 'playlist')">
+                            <p class="music-title-2">{{y+1}}. {{music.title}}</p>
+                          </div>
+                          <div class="col-sm-2">
+                            <span><i class="bi bi-suit-heart icon-heart" *ngIf="music.is_favourite === 'false'"
+                                (click)="clickFavourite(y, music, 'playlist')"></i></span>
+                            <span><i class="bi bi-suit-heart-fill icon-heart" style="color: red;"
+                                *ngIf="music.is_favourite === 'true'" (click)="clickFavourite(y, music, 'playlist')"></i></span>
+                            <!--  -->
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="panelsStayOpen-headingFive">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#panelsStayOpen-collapseFive" aria-expanded="false"
+                  aria-controls="panelsStayOpen-collapseFive">
+                  Pop Songs
+                </button>
+              </h2>
+              <div id="panelsStayOpen-collapseFive" class="accordion-collapse collapse"
+                aria-labelledby="panelsStayOpen-headingFive">
+                <div class="accordion-body">
+                  <span *ngFor="let music of finalMusic; let y = index; ;">
+                    <div class="card crad-playlist" *ngIf="music.category === 'Pop Songs'">
+                      <div class="card-body card-playlist-card-body">
+                        <div class="row card-play-item">
+                          <div class="col-sm-10 music-title-column" (click)="clickMusic(y, 'playlist')">
+                            <p class="music-title-2">{{y+1}}. {{music.title}}</p>
+                          </div>
+                          <div class="col-sm-2">
+                            <span><i class="bi bi-suit-heart icon-heart" *ngIf="music.is_favourite === 'false'"
+                                (click)="clickFavourite(y, music, 'playlist')"></i></span>
+                            <span><i class="bi bi-suit-heart-fill icon-heart" style="color: red;"
+                                *ngIf="music.is_favourite === 'true'" (click)="clickFavourite(y, music, 'playlist')"></i></span>
+                            <!--  -->
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="card crad-playlist" *ngFor="let music of happyMusicList; let y = index;">
+            <div class="card-body card-playlist-card-body">
+              <div class="row card-play-item">
+                <div class="col-sm-10 music-title-column" (click)="clickMusic(y)">
+                  <p class="music-title-2">{{y+1}}. {{music.title}}</p>
+                </div>
+                <div class="col-sm-2">
+                  <span><i class="bi bi-suit-heart icon-heart" *ngIf="music.is_favourite === 'false'"
+                      (click)="clickFavourite(y, music)"></i></span>
+                  <span><i class="bi bi-suit-heart-fill icon-heart" style="color: red;"
+                      *ngIf="music.is_favourite === 'true'" (click)="clickFavourite(y, music)"></i></span>
+                </div>
+              </div>
+            </div>
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="col-sm-1"></div> -->
+</div>
+<div class="row favourite-section">
+  <div class="col-sm">
+    <div>
+      <div class="card card-main-playlist2">
+        <p class="playlist-title-2">Favourites from Happy</p>
+        <div class="card-body scroll-playlist">
+          <span *ngFor="let music of happyMusicList; let y = index;">
+            <div class="card crad-playlist" *ngIf="music.is_favourite === 'true'">
+              <div class="card-body card-playlist-card-body">
+                <div class="row card-play-item">
+                  <div class="col-sm-10 music-title-column" (click)="clickMusic(y, 'happy')">
+                    <p class="music-title-2">{{music.title}}</p>
+                  </div>
+                  <div class="col-sm-2">
+                    <span><i class="bi bi-suit-heart icon-heart" *ngIf="music.is_favourite === 'false'"
+                        (click)="clickFavourite(y, music, 'happy')"></i></span>
+                    <span><i class="bi bi-suit-heart-fill icon-heart" style="color: red;"
+                        *ngIf="music.is_favourite === 'true'" (click)="clickFavourite(y, music, 'happy')"></i></span>
+                    <!--  -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </span>
+          <span *ngIf="this.favhappy == 0" style="text-align: center;">
+            <br/>
+            <p style="color: #666362;">No Favourites from Happy Music</p>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm">
+    <div>
+      <div class="card card-main-playlist2">
+        <p class="playlist-title-2">Favourites from Romantic</p>
+        <div class="card-body scroll-playlist">
+          <span *ngFor="let music of romanticMusicList; let y = index;">
+            <div class="card crad-playlist" *ngIf="music.is_favourite === 'true'">
+              <div class="card-body card-playlist-card-body">
+                <div class="row card-play-item">
+                  <div class="col-sm-10 music-title-column" (click)="clickMusic(y, 'romantic')">
+                    <p class="music-title-2">{{music.title}}</p>
+                  </div>
+                  <div class="col-sm-2">
+                    <span><i class="bi bi-suit-heart icon-heart" *ngIf="music.is_favourite === 'false'"
+                        (click)="clickFavourite(y, music, 'romantic')"></i></span>
+                    <span><i class="bi bi-suit-heart-fill icon-heart" style="color: red;"
+                        *ngIf="music.is_favourite === 'true'" (click)="clickFavourite(y, music, 'romantic')"></i></span>
+                    <!--  -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </span>
+          <span *ngIf="this.favromantic == 0" style="text-align: center;">
+            <br/>
+            <p style="color: #666362;">No Favourites from Romantic Music</p>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm">
+    <div>
+      <div class="card card-main-playlist2">
+        <p class="playlist-title-2">Favourites from Hyper</p>
+        <div class="card-body scroll-playlist">
+          <span *ngFor="let music of angryMusicList; let y = index;">
+            <div class="card crad-playlist" *ngIf="music.is_favourite === 'true'">
+              <div class="card-body card-playlist-card-body">
+                <div class="row card-play-item">
+                  <div class="col-sm-10 music-title-column" (click)="clickMusic(y, 'angry')">
+                    <p class="music-title-2">{{music.title}}</p>
+                  </div>
+                  <div class="col-sm-2">
+                    <span><i class="bi bi-suit-heart icon-heart" *ngIf="music.is_favourite === 'false'"
+                        (click)="clickFavourite(y, music, 'angry')"></i></span>
+                    <span><i class="bi bi-suit-heart-fill icon-heart" style="color: red;"
+                        *ngIf="music.is_favourite === 'true'" (click)="clickFavourite(y, music, 'angry')"></i></span>
+                    <!--  -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </span>
+          <span *ngIf="this.favangry == 0" style="text-align: center;">
+            <br/>
+            <p style="color: #666362;">No Favourites from Hyper Music</p>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm">
+    <div>
+      <div class="card card-main-playlist2">
+        <p class="playlist-title-2">Favourites from Nutral</p>
+        <div class="card-body scroll-playlist">
+          <span *ngFor="let music of nutralMusicList; let y = index;">
+            <div class="card crad-playlist" *ngIf="music.is_favourite === 'true'">
+              <div class="card-body card-playlist-card-body">
+                <div class="row card-play-item">
+                  <div class="col-sm-10 music-title-column" (click)="clickMusic(y, 'nutral')">
+                    <p class="music-title-2">{{music.title}}</p>
+                  </div>
+                  <div class="col-sm-2">
+                    <span><i class="bi bi-suit-heart icon-heart" *ngIf="music.is_favourite === 'false'"
+                        (click)="clickFavourite(y, music, 'nutral')"></i></span>
+                    <span><i class="bi bi-suit-heart-fill icon-heart" style="color: red;"
+                        *ngIf="music.is_favourite === 'true'" (click)="clickFavourite(y, music, 'nutral')"></i></span>
+                    <!--  -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </span>
+          <span *ngIf="this.favnutral == 0" style="text-align: center;">
+            <br/>
+            <p style="color: #666362;">No Favourites from Nutral Music</p>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br /><br />
+
+<footer class="bg-color py-2 px-4 mb-0">
+  <div class="text-white">
+    Copyright © 2023. All rights reserved.
+  </div>
+</footer>
+
+<!-- <div style="text-align: center;">
+    <button type="button" class="btn btn-warning" (click)="goDashboard()">Go Dashboard</button>
+</div> -->
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Logout </h1>&nbsp;&nbsp; <i class="fa fa-lock"></i>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to log-off?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-outline-danger" (click)="logOut()">Logout</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<img class="chat-btn" src="assets/images/chatButton2.png" alt="chat" (click)="openChat()">
+
+<!-- Modal -->
+
+<section style="background-color: #eee;" *ngIf="openChatWindow"
+style="position: absolute; right: 20px; width: 80vw; min-width: 300px; max-width: 400px; bottom: 130px; z-index: 3; margin-top: 20px;">
+  <div class="container">
+    <div class="row d-flex justify-content-right">
+      <div>
+        <div class="card" id="chat2">
+          <div class="card-header d-flex justify-content-between align-items-center p-3">
+            <img src="./assets/images/bot2.png" alt="avatar 1" style="width: 45px; height: 100%;">
+            <h5 class="mb-0" style="float: left;">Chat with FaceTunes Bot<p class="bot-typing-message" *ngIf="messageDisabled">Bot is typing...</p></h5>
+            <i class="fas fa-times text-muted fa-lg" (click)="openChat()" style="cursor: pointer;"></i>
+          </div>
+          <div #listContainer class="card-body" data-mdb-perfect-scrollbar="true"
+            style="position: relative; height: 40vh; overflow-y: scroll;">
+            <div *ngFor="let item of messageArray">
+              <div class="d-flex flex-row justify-content-end mb-4" *ngIf="item.user==='you'">
+                <div>
+                  <p class="small p-2 me-3 mb-1 text-white rounded-3 bg-warning message-text">{{item.message}}</p>
+                  <p class="small me-3 mb-3 rounded-3 text-muted d-flex justify-content-end">{{item.time}}</p>
+                </div>
+                <img src="./assets/images/you2.png" alt="avatar 1" style="width: 45px; height: 100%;">
+              </div>
+              <div class="d-flex flex-row justify-content-start" *ngIf="item.user==='bot'" style="margin-top: -30px;">
+                <img src="./assets/images/bot2.png" alt="avatar 1" style="width: 45px; height: 100%;">
+                <div>
+                  <p class="small p-2 ms-3 mb-1 rounded-3 message-text" style="background-color: #f5f6f7;">
+                    {{item.message}}</p>
+                  <p class="small ms-3 mb-3 rounded-3 text-muted">{{item.time}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <form [formGroup]="chatForm">
+            <div class="card-footer text-muted d-flex justify-content-start align-items-center p-3">
+              <img src="./assets/images/you2.png" alt="avatar 3" style="width: 40px; height: 100%; margin-right: 5px;">
+
+              <input type="text" class="form-control form-control-lg" id="exampleFormControlInput1"
+                formControlName="message" placeholder="Type message">
+              <a class="ms-3" (click)="sendMessage()" style="float: right;" *ngIf="!messageDisabled"><i
+                  class="fas fa-paper-plane abled-fa"></i></a>
+              <a class="ms-3" style="float: right;" *ngIf="messageDisabled"><i
+                  class="fas fa-paper-plane disabled-fa"></i></a>
+
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Modal full screen-->
+<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog music-div">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Music Player</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div [ngClass]="selectedColor" style="height: 100%;"></div>
+      </div>
+      <br />
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-2 btn-previous">
+              <button type="button" class="btn btn-outline-primary btn-play" [disabled]="this.disablePreviousBtn"
+                (click)="clickPrevious()"><i class="bi bi-chevron-left"></i>
+                Previous</button>
+            </div>
+            <div class="col-sm-8">
+              <audio controls class="player" [src]="this.currentSong" #audioPlayer2>
+                <source type="audio/mpeg">
+              </audio>
+            </div>
+            <div class="col-sm-2 btn-next">
+              <button type="button" class="btn btn-outline-primary btn-play" [disabled]="this.disableNextBtn"
+                (click)="clickNext()"><i class="bi bi-chevron-right"></i>
+                Next</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="clickCloseFullScreen()"
+          data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

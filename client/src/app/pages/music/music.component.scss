@@ -1,0 +1,389 @@
+.card-player {
+    // width: 50%;
+    filter: drop-shadow(3px 5px 15px rgba(202, 202, 202, 0.4));
+
+}
+
+.btn-play {
+    width: 118px;
+}
+
+.playlist-title {
+    font-size: 25px;
+    font-weight: bold;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin-top: 10px;
+    margin-left: 15px;
+    margin-bottom: 0;
+    text-transform: capitalize;
+}
+
+.playlist-title-2 {
+    font-size: 18px;
+    font-weight: bold;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin-top: 10px;
+    margin-left: 15px;
+    margin-bottom: 0;
+}
+
+.crad-playlist {
+    width: auto;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    height: 75px;
+}
+
+.crad-playlist :hover {
+    cursor: pointer;
+}
+
+.icon-heart {
+    font-size: 30px;
+}
+
+.btn-next {
+    text-align: right;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.btn-previous {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.player {
+    width: -webkit-fill-available;
+}
+
+.video {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    width: 450px;
+}
+
+// .video11 {
+//     margin-left: auto;
+//     margin-right: auto;
+//     display: block;
+//     width: 100%;
+//     height: 245px;
+//     background-color: red;
+//     animation: happy 15s ease infinite;
+// }
+
+
+.video1 {
+    background: linear-gradient(270deg, #FFF500, #FF8A00, #439F0B, #FFF500);
+    background-size: 400% 400%;
+    width: 100%;
+    height: 245px;
+    animation: flowRate 15s ease infinite;
+}
+
+@keyframes flowRate {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+
+@-webkit-keyframes flowRate {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@-moz-keyframes flowRate {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@keyframes happy {
+    0% {background-color: #FFF500;}
+    33% {background-color: #FF8A00;}
+    66% {background-color: #439F0B;}
+    100% {background-color: #FFF500;}
+}
+
+// .video3 {
+//     margin-left: auto;
+//     margin-right: auto;
+//     display: block;
+//     width: 100%;
+//     height: 245px;
+//     background-color: red;
+//     animation: relax 15s ease infinite;
+// }
+ .video3 {
+    background: linear-gradient(270deg, #4AAA0E, #2A8BFD, #227DCD, #8D13B8);
+    background-size: 400% 400%;
+    width: 100%;
+    height: 245px;
+    animation: flowRate 15s ease infinite;
+}
+
+@keyframes relax {
+    0% {background-color: #4AAA0E;}
+    33% {background-color: #2A8BFD;}
+    66% {background-color: #227DCD;}
+    100% {background-color: #8D13B8;}
+}
+
+// .video5 {
+//     margin-left: auto;
+//     margin-right: auto;
+//     display: block;
+//     width: 100%;
+//     height: 245px;
+//     background-color: red;
+//     animation: hyper 15s ease infinite;
+// }
+
+
+.video5 {
+    background: linear-gradient(270deg, #8D13B8, #FF8A00, #FFF500, #4AAA0E);
+    background-size: 400% 400%;
+    width: 100%;
+    height: 245px;
+    animation: flowRate 15s ease infinite;
+}
+
+@keyframes  hyper{
+    0% {background-color: #8D13B8;}
+    33% {background-color: #FF8A00;}
+    66% {background-color: #FFF500;}
+    100% {background-color: #4AAA0E;}
+}
+
+// .video7 {
+//     margin-left: auto;
+//     margin-right: auto;
+//     display: block;
+//     width: 100%;
+//     height: 245px;
+//     background-color: red;
+//     animation: romantic 15s ease infinite;
+// }
+
+
+.video7 {
+    background: linear-gradient(270deg, #FF00A8, #8D13B8, #FF0000);
+    background-size: 400% 400%;
+    width: 100%;
+    height: 245px;
+    animation: flowRate 15s ease infinite;
+}
+
+@keyframes romantic {
+    0% {background-color: #FF00A8;}
+    50% {background-color: #8D13B8;}
+    100% {background-color: #FF0000;}
+}
+
+.card-play-item {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.music-title-2 {
+    margin-bottom: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.music-title-column {
+    margin-bottom: auto;
+    margin-top: auto;
+}
+
+.card-main-playlist {
+    height: 527px;
+    filter: drop-shadow(3px 5px 15px rgba(202, 202, 202, 0.4));
+
+}
+
+.card-main-playlist2 {
+    height: 450px;
+    filter: drop-shadow(3px 5px 15px rgba(202, 202, 202, 0.4));
+
+}
+
+.scroll-playlist {
+    overflow-y: auto;
+}
+
+.card-playlist-card-body {
+    padding-top: 15px;
+}
+
+
+.bg-color {
+    background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+    background: -webkit-linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+}
+
+h3 {
+    color: white;
+}
+
+// .page-wrapper {
+//     background: #eee;
+//     min-height: 100vh;
+// }
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+.gradient-custom-2 {
+    /* fallback for old browsers */
+    background: #fccb90;
+
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+}
+
+.btn-img {
+    width: 250px;
+    text-align: center;
+    justify-content: center;
+}
+
+
+.chat-btn {
+    position: fixed;
+    width: 70px;
+    bottom: 50px;
+    float: right;
+    right: 28px;
+    margin-right: 0px;
+    cursor: pointer;
+    opacity: 0.8;
+    filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
+}
+
+.divider:after,
+.divider:before {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #eee;
+}
+
+.message-text {
+    word-wrap: break-word;
+    max-width: 230px;
+}
+
+.abled-fa {
+    color: #ffc107;
+    /* Replace with your desired warning color */
+    size: 30px;
+    cursor: pointer;
+}
+
+.disabled-fa {
+    color: #686868;
+    /* Replace with your desired warning color */
+    size: 30px;
+}
+
+.right-section {
+    /* Add your styles for the right section */
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+    color: white;
+}
+
+.container-fluid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dropdown-menu-end {
+    right: 10px;
+    left: auto;
+    width: 100px;
+    text-align: center;
+}
+
+.mid-container {
+    padding: 15px;
+    margin-top: 90px;
+    margin-left: 20px;
+    margin-right: 20px;
+    // transform: translateY(50%);
+}
+
+.favourite-section {
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+.music-div {
+    max-width: 100%;
+    margin: 0;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100vh;
+    display: flex;
+}
+
+.btn-full-screen {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.previous {
+    background-color: #f1f1f1;
+    color: black;
+  }
+  
+  .next {
+    background-color: #04AA6D;
+    color: white;
+  }
+  
+  .round {
+    border-radius: 50%;
+  }
+
+  a {
+    text-decoration: none;
+    display: inline-block;
+    padding: 8px 16px;
+  }
+  
+  a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+
+  a.disabled {
+    pointer-events: none;
+    cursor: default;
+  }
+
+  .bot-typing-message {
+    font-size: 12px;
+    font-style: italic;
+    color: gray;
+    text-align: center;
+    padding: 0px;
+}
+
+.card-header {
+    position: relative;
+}

@@ -1,0 +1,94 @@
+<section class="h-100 gradient-form" style="background-color: #eee;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-xl-10">
+        <div class="card rounded-3 text-black">
+          <div class="row g-0">
+            <div class="col-lg-6">
+              <div class="card-body p-md-5 mx-md-4" *ngIf="viewLogin" [@fadeOut]>
+                <div class="text-center">
+                  <img src="./assets/images/login_m_icon.png"
+                    style="width: 185px; height: 70px;" alt="logo">
+                  <h4 class="mt-1 mb-5 pb-1">Hello! <span class="gr-color">{{greeting}}</span></h4>
+                </div>
+
+                <form [formGroup]="loginForm">
+                  <p>Please login to your account</p>
+
+                  <div class="col-auto mb-3 pt-1">
+                    <input type="email" class="form-control" id="inputEmail" placeholder="Email" formControlName="email" required>
+                  </div>
+                  <div class="col-auto mb-3 pt-1">
+                    <input type="password" class="form-control" id="inputPassword" placeholder="Password" formControlName="password" required>
+                  </div>
+                  <div class="text-center">
+                    <p style="color: red;">{{errorText}}</p>
+                  </div>
+                  <div class="text-center pt-1 mb-5 pb-1">
+                    <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit" (click)="onSubmit()">Login</button>
+                    <a class="text-muted" href="#!">Forgot password?</a>
+                  </div>
+
+                  <div class="d-flex align-items-center justify-content-center pb-4">
+                    <p class="mb-0 me-2">Don't have an account?</p>
+                    <button type="button" class="btn btn-outline-danger" (click)="onToggle()">Create new</button>
+                  </div>
+
+                </form>
+
+              </div>
+
+              <div class="card-body p-md-5 mx-md-4" *ngIf="!viewLogin" [@fadeOut]>
+                <div class="text-center">
+                  <img src="./assets/images/login_m_icon.png"
+                    style="width: 185px; height: 70px;" alt="logo">
+                  <h4 class="mt-1 mb-5 pb-1">Hello! <span class="gr-color">{{greeting}}</span></h4>
+                </div>
+
+                <form [formGroup]="submitForm">
+                  <p style="color: gray; font-weight: 700;">Please Create your account</p>
+                  <div class="col-auto mb-3 pt-1">
+                    <input type="text" class="form-control" id="inputFirstName" placeholder="First Name" formControlName="firstName">
+                  </div>
+                  <div class="col-auto mb-3 pt-1">
+                    <input type="text" class="form-control" id="inputLastName" placeholder="Last Name" formControlName="lastName">
+                  </div>
+                  <div class="col-auto mb-3 pt-1">
+                    <input type="number" class="form-control" id="inputContactNumber" placeholder="Contact Number" formControlName="contactNo">
+                  </div>
+                  <div class="col-auto mb-3 pt-1">
+                    <input type="email" class="form-control" id="inputEmail" placeholder="Email" required formControlName="email" (input)="onInputChange()">
+                  </div>
+                  <div class="col-auto mb-3 pt-1">
+                    <input type="password" class="form-control" id="inputPassword" placeholder="Password" required formControlName="password">
+                  </div>
+                  <div class="text-center">
+                    <p style="color: red;">{{errorText}}</p>
+                  </div>
+                  <div class="d-flex align-items-center justify-content-center pb-4">
+                    <button type="button" class="btn btn-outline-danger btn-main" (click)="onToggle()">Cancel</button>
+                    <button type="submit" class="btn btn-outline-warning btn-main" (click)="onCreate()">Create new</button>
+                  </div>
+
+                </form>
+
+              </div>
+            </div>
+            <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
+              <div class="text-white px-3 py-4 p-md-5 mx-md-4">
+                <h4 class="mb-4" style="text-align: center;">Welcome to Our Face-Driven<br> Music Player!</h4>
+                <p class="small mb-0">Welcome to FaceTunes - the revolutionary music app that captures your facial expressions and provides you
+                   with a personalized album based on your mood. With FaceTunes, you can express yourself through music like never before.
+                    Simply take a photo of your face and let our advanced facial recognition technology analyze your expressions.
+                     Our algorithm then matches your mood with the perfect album, featuring songs that reflect your emotions.
+                      Whether you're feeling happy, sad, angry, or anything in between, FaceTunes has got you covered.
+                       Try it out now and discover the power of music and emotions combined.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+

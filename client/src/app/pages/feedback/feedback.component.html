@@ -1,0 +1,86 @@
+<div class="page-wrapper d-flex flex-column justify-content-center align-items-center">
+    <nav class="navbar navbar-light bg-color fixed-top">
+        <div class="container-fluid">
+            <a href="http://localhost:4200/pages/capture"><h3>FaceTunes</h3></a>
+            <div class="right-section d-flex align-items-center">
+                <a href="http://localhost:4200/pages/feedbacks" role="button" style="color: #ffff; margin-right: 10px;" *ngIf="viewAdmin">Feedbacks</a>
+              <a href="http://localhost:4200/pages/contact-us" role="button" style="color: #ffff; margin-right: 10px;" *ngIf="!viewAdmin">Contact Us</a>
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">{{firstName}}</a>
+                  <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" href="http://localhost:4200/pages/profile"><i class="fa fa-user" aria-hidden="true"> </i>&nbsp;Profile</a></li>
+                    <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-arrow-right-from-bracket"></i> Log out</a></li>
+                    <li><a class="dropdown-item"></a></li>
+                  </ul>
+              </div>
+        </div>
+    </nav>
+    
+    <div class="container-fluid d-flex flex-column justify-content-center align-items-center">
+        <div class="card card-body mx-auto align-items-center mt-5 mb-5" style="width: 90%; padding: 20px">
+            <div class="card-body p-md-2">
+                <div class="text-center">
+                  <img src="./assets/images/login_m_icon.png"
+                    style="width: 185px; height: 70px;" alt="logo">
+                  <h4 class="mb-3 pb-1">Feedback & Comments</h4>
+                </div>
+                    <dx-data-grid #grid id="gridContainer" [showBorders]="true" [dataSource]="reviewSource"  [showColumnHeaders]="true"
+                    [columnAutoWidth]="true" [selectedRowKeys]="[]" [showBorders]="true" [columnHidingEnabled]="false" [allowColumnResizing]="true">
+                        <dxo-search-panel [visible]="true" placeholder="Filter Table Data"></dxo-search-panel>
+                        <dxo-sorting mode="multiple"></dxo-sorting>
+                        <dxo-paging [pageSize]="10"></dxo-paging>
+                        <dxo-header-filter fixedPosition="right" [visible]="true" [allowSearch]="true"></dxo-header-filter>
+                        <dxo-editing mode="row" [allowUpdating]="false" [allowDeleting]="true" [useIcons]="true"></dxo-editing>
+                        <dxi-column type="buttons" width="5%">
+                            <dxi-button name="edit"></dxi-button>
+                            <dxi-button name="delete"></dxi-button>
+                          </dxi-column>
+                        <dxo-pager [showPageSizeSelector]="true" [showNavigationButtons]="true" [allowedPageSizes]="[10, 20]" [showInfo]="true"> </dxo-pager>
+                        <dxi-column dataField="date" caption="Date" alignment="center" [allowEditing]="false"  cellTemplate="dateTemplate" width="10%">
+                        </dxi-column>          
+                        <dxi-column dataField="first_name" caption="First Name" alignment="center" [allowEditing]="false" width="10%"></dxi-column>
+                        <dxi-column dataField="last_name" caption="Last_Name" alignment="center" width="10%"></dxi-column >
+                        <dxi-column dataField="contact_no" caption="Contact No" alignment="center" width="10%"></dxi-column>
+                        <dxi-column dataField="email" caption="Email" alignment="center" width="15%"></dxi-column>
+                        <dxi-column dataField="feedback" caption="Feedback" alignment="left" width="40%"></dxi-column>
+
+                        <div *dxTemplate="let item of 'dateTemplate'">
+                          {{ item.data.date | date: "yyyy-MM-dd" }}
+                        </div>
+                      </dx-data-grid>
+
+                <div class="d-flex align-items-center justify-content-center">
+                    <button type="button" class="btn btn-outline-danger btn-main" (click)="back()">Go Back</button>
+                </div>
+
+              </div>
+        </div>
+        
+    </div>
+    
+    <footer class="bg-color py-2 px-4 mb-0">
+        <div class="text-white">
+            Copyright © 2023. All rights reserved.
+          </div>
+    </footer>
+    </div>
+    
+    
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Logout </h1>&nbsp;&nbsp; <i class="fa fa-lock"></i>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            Are you sure you want to log-off?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-outline-danger" (click)="logOut()">Logout</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+    
